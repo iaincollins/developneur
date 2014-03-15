@@ -1,0 +1,32 @@
+<template name='forums'>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Airlines
+                {{#if loggedIn}}
+                <a href="/new/forum" class="btn btn-primary pull-right">Add new airline</a>
+                {{/if}}
+            </h1>
+        </div>
+        <div class="col-sm-4">
+            <a href="/new/post" class="pull-right unstyled"><h2>
+                Make a complaint
+                <span class="fa fa-arrow-circle-right"></span>
+            </h2></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+          {{#each allForums}}
+          <hr/>
+          <section class='{{this._id}} interactive'>
+            <h3>
+                <img height='48' class="pull-right" src='{{this.imageURL}}'/>
+                {{this.name}}
+                <span class="badge badge-lg pull-right">0 complaints</span>
+            </h3>
+            <p class="lead">{{this.description}}</p>
+          </section>
+          {{/each}}
+        </div>
+    </div>
+</template>
