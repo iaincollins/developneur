@@ -52,6 +52,10 @@ if (Meteor.isClient) {
     });
 
     /* Comments */
+    Template.forum.currentUserGrav=function(user){
+	console.log(user)
+	return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5(user.author.emails[0].address))
+    }
     Template.forum.currentComments=function(currentPostId){
 	return Comments.find({postId:currentPostId});
     }

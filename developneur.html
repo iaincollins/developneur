@@ -1,5 +1,6 @@
 <head>
   <title>developneur</title>
+  <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 </head>
 
 <body>
@@ -72,6 +73,7 @@
   <h3>{{currentForum.description}}</h3>
   {{#each currentPosts}}
   <section>
+    <img src='{{currentUserGrav this}}' />
     <h3>{{this.title}}</h1>
 <h4>{{this.details}}</h4>
 <form action='#'>
@@ -80,6 +82,7 @@
 </form>
 {{#each currentComments this._id}}
 <section>
+  <img src='{{currentUserGrav this}}' />
   <h5>{{this.comment}}</h5>
 </section>
 {{/each}}
