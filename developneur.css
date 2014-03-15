@@ -26,3 +26,26 @@
 .margin-bottom {
     margin-bottom: 10px;
 }
+
+.navbar-brand {
+    color: #ffd000 !important;
+}
+
+.navbar-brand .fa-stack {
+    position: relative;
+    top: -14px;
+    background: #ffd000;
+    margin-right: 10px;
+}
+
+.navbar-brand .fa-plane {
+    position: relative;
+    top: 3px;
+    left: -1px;
+    color: #222222 !important;
+}
+
+a.unstyled {
+    color: #000 !important;
+    text-decoration: none;
+}
