@@ -3,17 +3,10 @@ Forums = new Meteor.Collection('forums')
 Posts = new Meteor.Collection('posts')
 
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to developneur.";
-  };
-
-  Template.hello.events({
-    'click input': function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
-  });
+    Meteor.Router.add({
+	'/':'home',
+	'/new':'newForum'
+    });
 }
 
 if (Meteor.isServer) {
