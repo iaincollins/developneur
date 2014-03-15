@@ -94,6 +94,9 @@
         </div>
         <div class="col-sm-3">
             {{#if loggedIn}}
+	    {{#if isOwnerOfForum}}
+	    <span class='btn btn-danger margin-bottom' id='removeForum'>Remove Forum</span>
+	    {{/if}}
             {{> newPost}}
             {{/if}}
         </div>
