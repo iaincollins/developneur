@@ -9,7 +9,7 @@ if (Meteor.isClient) {
 	'/':'home',
 	'/new':'newForum',
 	'/forums':'forums',
-	'/forum/:id':{to:'/forum/',and:function(id){
+	'/forum/:id':{to:'forum',and:function(id){
 	    Session.set('currentForumId', id)
 	}}
     });
@@ -36,7 +36,20 @@ if (Meteor.isClient) {
     Template.forum.currentForum=function(){
 	return Forums.findOne(Session.get('currentForumId'))
     }
+    Template.forum.currentPosts=function(){
+	return Posts.find({forumId:Session.get('currentForumId')})
+    }
+    Template.forum.loggedIn=function(){
+	if(Meteor.user()!=null){return true}else{return false};
+    }
     
+    /* newPost */
+    Template.newPost.events({
+	'submit':function(){
+	    Posts.insert({title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
+	}
+    });
+
 }
 
 if (Meteor.isServer) {
