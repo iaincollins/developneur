@@ -1,6 +1,7 @@
 Sites = new Meteor.Collection('sites')
 Forums = new Meteor.Collection('forums')
 Posts = new Meteor.Collection('posts')
+Comments = new Meteor.Collection('comments')
 
 if (Meteor.isClient) {
 
@@ -17,7 +18,7 @@ if (Meteor.isClient) {
     /* New Forum*/
     Template.newForum.events({
 	'submit':function(){
-	    Forums.insert({siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
+	    Forums.insert({created:new Date(),modified:new Date(),siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
 	    console.log($('#nameOfForum').val());
 	}
     });
@@ -46,10 +47,19 @@ if (Meteor.isClient) {
     /* newPost */
     Template.newPost.events({
 	'submit':function(){
-	    Posts.insert({title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
+	    Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
 	}
     });
 
+    /* Comments */
+    Template.forum.currentComments=function(currentPostId){
+	return Comments.find({postId:currentPostId});
+    }
+    Template.forum.events({
+	'submit':function(){
+	    Comments.insert({siteId:1,forumId:Session.get('currentForumId'),author:Meteor.user(),comment:$('#newCommentText').val(),postId:$('#newCommentText').attr('data-post-id'),parentId:0});
+	}
+    })
 }
 
 if (Meteor.isServer) {

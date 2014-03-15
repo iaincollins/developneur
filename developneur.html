@@ -61,8 +61,19 @@
   <h1>{{currentForum.name}}</h1>
   <h3>{{currentForum.description}}</h3>
   {{#each currentPosts}}
-  <h3>{{this.title}}</h1>
-  <h4>{{this.details}}</h4>
+  <section>
+    <h3>{{this.title}}</h1>
+<h4>{{this.details}}</h4>
+<form action='#'>
+  <input type='text' placeholder='Comment' id='newCommentText' data-post-id='{{this._id}}' required />
+  <input type='submit' value='Comment' />
+</form>
+{{#each currentComments this._id}}
+<section>
+  <h5>{{this.comment}}</h5>
+</section>
+{{/each}}
+</section>
   {{/each}}
 </template>
 
