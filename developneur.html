@@ -3,22 +3,54 @@
 </head>
 
 <body>
-  {{#isolate}} {{renderPage}} {{/isolate}}
+    {{> header}}
+    <div class="container">
+        {{#isolate}} {{renderPage}} {{/isolate}}
+    </div>
 </body>
 
+<template name="header">
+    <div class="container">
+        <div class="row">
+            <div class="span-sm-9">
+                <h1 class="pull-left">Site Name</h1>
+            </div>
+            <div class="span-sm-3">
+                <ul class="list-unstyled pull-right">{{loginButtons}}</ul>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="home">
-  <h1>Hello!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+    <div class="row">
+        <div class="span-sm-12">
+          <h2>Hello!</h2>
+          {{greeting}}
+          <input type="button" value="Click" />
+      </div>
+  </div>
 </template>
 
 <template name='newForum'>
+<<<<<<< HEAD
   <h1>New Forum</h1>
   <form action='#'>
     <input id='nameOfForum' type='text' placeholder='Name of Forum' required />
     <input id='descriptionOfForum' type='text' placeholder='Description of Forum' />
     <input type='submit' value='Create' />
   </form>
+=======
+    <div class="row">
+        <div class="span-sm-12">
+            <h1>New Forum</h1>
+            <form action='#'>
+                <input type='text' placeholder='Name of Forum' />
+                <input type='submit' value='Create' />
+            </form>
+        </div>
+    </div>
+>>>>>>> 076b3674dfc73e10e9c1076f468c54add2f0e508
 </template>
 
 <template name='forums'>
