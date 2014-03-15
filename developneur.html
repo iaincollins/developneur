@@ -29,7 +29,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a id="" href="/forums">Airlines</a></li>
+              <li class="hidden"><a id="" href="/forums">Airlines</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {{ loginButtons }}
@@ -41,13 +41,9 @@
 
 <template name="home">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
+            <h1>Home</h1>
         </div>
-        <div class="col-sm-4">
-          <a class="unstyled"><h2>
-              Make a complaint
-              <span class="fa fa-arrow-circle-right"></span>
-          </h2></a>
       </div>
   </div>
 </template>
@@ -65,7 +61,7 @@
                     <label>Airline description</label>
                     <input id='descriptionOfForum' class="form-control" type='text' placeholder='Description of Forum' />
                 </div>
-                <input type='submit' class="btn btn-primary pull-right" value='Create new forum' />
+                <input type='submit' class="btn btn-primary pull-right" value='Add new airline' />
             </form>
         </div>
     </div>
@@ -73,41 +69,53 @@
 
 <template name='forums'>
     <div class="row">
-        <div class="col-sm-9">
-            <h2 class="margin-top-none">Airlines</h2>
+        <div class="col-sm-8">
+            <h1>Airlines
+                {{#if loggedIn}}
+                <a href="/new/forum" class="btn btn-primary pull-right">Add new airline</a>
+                {{/if}}
+            </h1>
         </div>
-        <div class="col-sm-3">
-            {{#if loggedIn}}
-            <a href="/new/forum" class="btn btn-primary pull-right">Add new airline</a>
-            {{/if}}
+        <div class="col-sm-4">
+            <a href="/new/post" class="pull-right unstyled"><h2>
+                Make a complaint
+                <span class="fa fa-arrow-circle-right"></span>
+            </h2></a>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8">
           {{#each allForums}}
           <hr/>
           <section class='{{this._id}} interactive'>
-            <h3>{{this.name}}</h3>
+            <h3>
+                {{this.name}}
+                <span class="badge badge-lg pull-right">0 complaints</span>
+            </h3>
             <p class="lead">{{this.description}}</p>
           </section>
           {{/each}}
-      </div>
-  </div>
+        </div>
+    </div>
 </template>
 
 <template name='forum'>
     <div class="row">
-        <div class="col-sm-9">
-            <h2 class="margin-top-none">Airlines :: {{currentForum.name}}</h2>
+        <div class="col-sm-8">
+            <h1>{{currentForum.name}} <small>Complaints</small>
+                {{#if loggedIn}}
+                    {{#if isOwnerOfForum}}
+                        <span class='btn btn-danger pull-right' id='removeForum'>Remove airline</span>
+                    {{/if}}
+                {{/if}}
+            </h1>
             <p class="lead">{{currentForum.description}}</p>
         </div>
-        <div class="col-sm-3">
-            {{#if loggedIn}}
-	    {{#if isOwnerOfForum}}
-	    <span class='btn btn-danger margin-bottom' id='removeForum'>Remove Forum</span>
-	    {{/if}}
-            {{> newPost}}
-            {{/if}}
+        <div class="col-sm-4">
+            <a href="/new/post" class="pull-right unstyled"><h2>
+                Make a complaint
+                <span class="fa fa-arrow-circle-right"></span>
+            </h2></a>
         </div>
     </div>
     <div class="row">
@@ -116,11 +124,11 @@
             <h2>Complaints</h2>
             {{#each currentPosts}}
             <div class="media clearfix">
-                <img class="pull-left" src='{{currentUserGrav this}}' />
+                <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
                 <div class="media-body">
-                <h3>{{this.title}}</h1>
-                <img src='{{this.imgURL}}'/>
+                <h3 class="margin-top-none">{{this.title}}</h1>
                 <p class="lead">{{this.details}}</p>
+                <br/>
                 {{#each currentComments this._id}}
                     <section>
                         <div class="media clearfix margin-bottom">
@@ -145,9 +153,16 @@
 </template>
 
 <template name='newPost'>
-  <form action='#'>
-    <input id='newPostTitle' class="form-control margin-bottom" type='text' placeholder='Title' required/>
-    <input id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details' />
-    <input type='submit' class="btn btn-primary pull-right" value='Create post' />
-  </form>
+    <div class="row">
+        <div class="col-sm-2">&nbsp;</div>
+        <div class="col-sm-8">
+            <h1>Make new complaint</h1>
+            <form action='#'>
+                <input id='newPostTitle' class="form-control margin-bottom" type='text' placeholder='Title' required/>
+                <textarea id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details'></textarea>
+                <input type='submit' class="btn btn-primary pull-right" value='Create post' />
+            </form>
+        </div>
+        <div class="col-sm-2">&nbsp;</div>
+    </div>
 </template>

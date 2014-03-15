@@ -7,12 +7,11 @@ if (Meteor.isClient) {
 
     /* Router Stuff */
     Meteor.Router.add({
-        '/':'home',
+        '/':'forums',
         '/new/forum':'newForum',
+        '/new/post':'newPost',
         '/forums':'forums',
-        '/forum/:id':{to:'forum',and:function(id){
-            Session.set('currentForumId', id)
-        }}
+        '/forum/:id':{ to:'forum',and:function(id) {Session.set('currentForumId', id) } }
     });
 
     Handlebars.registerHelper('loggedIn', function (id) {
