@@ -1,6 +1,7 @@
 <head>
-  <title>developneur</title>
-  <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+    <title>Air Travel</title>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +15,12 @@
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="/">Project name</a>
+            <a class="navbar-brand" href="/">
+                <span class="fa-stack fa-lg pull-left">
+                  <i class="fa fa-plane fa-stack-2x"></i>
+                </span>
+                <span class="pull-left">Air Travel</span>
+            </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -23,7 +29,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a id="" href="/forums">Forums</a></li>
+              <li class="active"><a id="" href="/forums">Airlines</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {{ loginButtons }}
@@ -35,10 +41,13 @@
 
 <template name="home">
     <div class="row">
-        <div class="col-sm-12">
-          <h2>Hello!</h2>
-          {{greeting}}
-          <input type="button" value="Click" />
+        <div class="col-sm-8">
+        </div>
+        <div class="col-sm-4">
+          <a class="unstyled"><h2>
+              Make a complaint
+              <span class="fa fa-arrow-circle-right"></span>
+          </h2></a>
       </div>
   </div>
 </template>
@@ -46,14 +55,14 @@
 <template name='newForum'>
     <div class="row">
         <div class="col-sm-12">
-            <h1>New Forum</h1>
+            <h1>New Airline</h1>
             <form action='#'>
                 <div class="form-group">
-                    <label>Forum name</label>
+                    <label>Airline name</label>
                     <input id='nameOfForum' class="form-control" type='text' placeholder='Name of Forum' required />
                 </div>
                 <div class="form-group">
-                    <label>Forum description</label>
+                    <label>Airline description</label>
                     <input id='descriptionOfForum' class="form-control" type='text' placeholder='Description of Forum' />
                 </div>
                 <input type='submit' class="btn btn-primary pull-right" value='Create new forum' />
@@ -65,11 +74,11 @@
 <template name='forums'>
     <div class="row">
         <div class="col-sm-9">
-            <h2 class="margin-top-none">Forums</h2>
+            <h2 class="margin-top-none">Airlines</h2>
         </div>
         <div class="col-sm-3">
             {{#if loggedIn}}
-            <a href="/new/forum" class="btn btn-primary pull-right">New forum</a>
+            <a href="/new/forum" class="btn btn-primary pull-right">Add new airline</a>
             {{/if}}
         </div>
     </div>
@@ -89,7 +98,7 @@
 <template name='forum'>
     <div class="row">
         <div class="col-sm-9">
-            <h2 class="margin-top-none">Forums :: {{currentForum.name}}</h2>
+            <h2 class="margin-top-none">Airlines :: {{currentForum.name}}</h2>
             <p class="lead">{{currentForum.description}}</p>
         </div>
         <div class="col-sm-3">
@@ -101,7 +110,7 @@
     <div class="row">
         <div class="col-sm-6">
             <hr/>
-            <h2>Posts</h2>
+            <h2>Complaints</h2>
             {{#each currentPosts}}
             <div class="media clearfix">
                 <img class="pull-left" src='{{currentUserGrav this}}' />
