@@ -28,7 +28,7 @@ if (Meteor.isClient) {
     /* New Forum */
     Template.newForum.events({
         'submit':function(){
-            Forums.insert({author:Meteor.user(),created:new Date(),modified:new Date(),siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
+            Forums.insert({imageURL:'http://1.bp.blogspot.com/-XprE-n6XCVo/T9T3uLknxRI/AAAAAAAADls/SK5VyMakTvQ/s1600/airplane+logo.jpeg',author:Meteor.user(),created:new Date(),modified:new Date(),siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
             Meteor.Router.to('/forums')
         }
     });
@@ -54,13 +54,31 @@ if (Meteor.isClient) {
     }
 
     Template.forum.isOwnerOfForum=function(){
-	return Forums.findOne(Session.get('currentForumId')).author._id==Meteor.user()._id
+	return Forums.findOne(Session.get('currentForumId')).author._id==(Meteor.user()||{})._id
+    }
+
+    Template.forum.isOwnerOfPost=function(test){
+	return Posts.findOne(test._id).author._id==(Meteor.user()||{})._id
+    }
+
+    Template.forum.isOwnerOfComment=function(test){
+	return Comments.findOne(test._id).author._id==(Meteor.user()||{})._id
+    }
+
+    Template.forum.isComment=function(test){
+	return test!=undefined
     }
 
     Template.forum.events({
 	'click #removeForum':function(){
 	    Forums.remove(Session.get('currentForumId'));
 	    Meteor.Router.to('/forums')
+	},
+	'click .removePost':function(test){
+	    Posts.remove($(test.target).attr('data-post-id'));
+	},
+	'click .removeComment':function(test){
+	    Comments.remove($(test.target).attr('data-comment-id'))
 	}
     });
     
@@ -76,10 +94,11 @@ if (Meteor.isClient) {
         return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5(user.author.emails[0].address))
     }
     Template.forum.currentComments=function(currentPostId){
+	console.log(currentPostId)
         return Comments.find({postId:currentPostId});
     }
     Template.forum.events({
-        'submit':function(){
+        'submit #addComment':function(){
             Comments.insert({siteId:1,forumId:Session.get('currentForumId'),author:Meteor.user(),comment:$('#newCommentText').val(),postId:$('#newCommentText').attr('data-post-id'),parentId:0});
         }
     })

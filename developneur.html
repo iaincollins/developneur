@@ -88,6 +88,7 @@
           <hr/>
           <section class='{{this._id}} interactive'>
             <h3>{{this.name}}</h3>
+	    <img height='48' src='{{this.imageURL}}'/>
             <p class="lead">{{this.description}}</p>
           </section>
           {{/each}}
@@ -111,36 +112,41 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6">
-            <hr/>
-            <h2>Complaints</h2>
-            {{#each currentPosts}}
-            <div class="media clearfix">
-                <img class="pull-left" src='{{currentUserGrav this}}' />
-                <div class="media-body">
-                <h3>{{this.title}}</h1>
-                <img src='{{this.imgURL}}'/>
-                <p class="lead">{{this.details}}</p>
-                {{#each currentComments this._id}}
-                    <section>
-                        <div class="media clearfix margin-bottom">
-                            <img class="pull-left" height="32" width="32" src='{{currentUserGrav this}}' />
-                            <div class="media-body">
-                                <h5>{{this.comment}}</h5>
-                            </div>
-                        </div>
-                    </section>
-                  {{/each}}
-                <h5>ADD A COMMENT</h5>
-                  <form action='#'>
-                      <textarea type='text' class="form-control margin-bottom" placeholder='Comment' id='newCommentText' data-post-id='{{this._id}}' required></textarea>
-                      <input type='submit' class="btn btn-primary pull-right" value='Comment' />
-                  </form>
-                 </div>
-            </div>
-            <hr/>
-          {{/each}}
+      <div class="col-sm-6">
+        <hr/>
+        <h2>Complaints</h2>
+        {{#each currentPosts}}
+        <div class="media clearfix">
+          <img class="pull-left" src='{{currentUserGrav this}}' />
+          <div class="media-body">
+	    {{#if isOwnerOfPost this}}
+	    <span class='btn btn-danger removePost' data-post-id='{{this._id}}'>Remove Complaint</span>
+	    {{/if}}
+            <h3>{{this.title}}</h3>
+	    <p class="lead">{{this.details}}</p>
+	    {{#each currentComments this._id}}
+	    <section>
+	      <div class="media clearfix margin-bottom">
+		<img class="pull-left" height="32" width="32" src='{{currentUserGrav this}}' />
+		<div class="media-body">
+                  <h5>{{this.comment}}</h5>
+		  {{#if isOwnerOfComment this}}
+		  <span class='btn btn-danger removeComment' data-comment-id='{{this._id}}'>Remove Comment</span>
+		  {{/if}}
+                </div>
+              </div>
+            </section>
+            {{/each}}
+            <h5>ADD A COMMENT</h5>
+            <form action='#' id='addComment'>
+              <textarea type='text' class="form-control margin-bottom" placeholder='Comment' id='newCommentText' data-post-id='{{this._id}}' required></textarea>
+              <input type='submit' class="btn btn-primary pull-right" value='Comment' />
+            </form>
+          </div>
         </div>
+        <hr/>
+        {{/each}}
+      </div>
     </div>
 </template>
 
