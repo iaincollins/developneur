@@ -2,3 +2,11 @@
 .modal-dialog {
     z-index: 1050;
 }
+
+#login-dropdown-list .dropdown-menu {
+    float: left !important;
+}
+
+#login-dropdown-list .dropdown-menu .or {
+    visibility: hidden;
+}
