@@ -28,8 +28,8 @@ if (Meteor.isClient) {
     /* New Forum */
     Template.newForum.events({
         'submit':function(){
-            Forums.insert({created:new Date(),modified:new Date(),siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
-            console.log($('#nameOfForum').val());
+            Forums.insert({author:Meteor.user(),created:new Date(),modified:new Date(),siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
+            Meteor.Router.to('/forums')
         }
     });
 
@@ -52,6 +52,17 @@ if (Meteor.isClient) {
     Template.forum.currentPosts=function(){
         return Posts.find({forumId:Session.get('currentForumId')})
     }
+
+    Template.forum.isOwnerOfForum=function(){
+	return Forums.findOne(Session.get('currentForumId')).author._id==Meteor.user()._id
+    }
+
+    Template.forum.events({
+	'click #removeForum':function(){
+	    Forums.remove(Session.get('currentForumId'));
+	    Meteor.Router.to('/forums')
+	}
+    });
     
     /* newPost */
     Template.newPost.events({
@@ -62,7 +73,6 @@ if (Meteor.isClient) {
 
     /* Comments */
     Template.forum.currentUserGrav=function(user){
-        console.log(user)
         return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5(user.author.emails[0].address))
     }
     Template.forum.currentComments=function(currentPostId){
