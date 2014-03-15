@@ -7,15 +7,36 @@ if (Meteor.isClient) {
     /* Router Stuff */
     Meteor.Router.add({
 	'/':'home',
-	'/new':'newForum'
+	'/new':'newForum',
+	'/forums':'forums',
+	'/forum/:id':{to:'/forum/',and:function(id){
+	    Session.set('currentForumId', id)
+	}}
     });
 
-    /* New Forums*/
+    /* New Forum*/
     Template.newForum.events({
 	'submit':function(){
-	    console.log('hi');
+	    Forums.insert({siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
+	    console.log($('#nameOfForum').val());
 	}
-    })
+    });
+
+    /* Forums */
+    Template.forums.allForums=function(){
+	return Forums.find();
+    }
+    Template.forums.events({
+	'click section':function(){
+	    Meteor.Router.to('/forum/'+$(this)[0]._id);
+	}
+    });
+
+    /* Forum */
+    Template.forum.currentForum=function(){
+	return Forums.findOne(Session.get('currentForumId'))
+    }
+    
 }
 
 if (Meteor.isServer) {

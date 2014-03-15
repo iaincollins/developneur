@@ -15,7 +15,21 @@
 <template name='newForum'>
   <h1>New Forum</h1>
   <form action='#'>
-    <input type='text' placeholder='Name of Forum' />
+    <input id='nameOfForum' type='text' placeholder='Name of Forum' required />
+    <input id='descriptionOfForum' type='text' placeholder='Description of Forum' />
     <input type='submit' value='Create' />
   </form>
+</template>
+
+<template name='forums'>
+  {{#each allForums}}
+  <section style='background-color:#DDD;' class='{{this._id}}'>
+    <h1>{{this.name}}</h1>
+    <h3>{{this.description}}</h3>
+  </section>
+  {{/each}}
+</template>
+
+<template name='forum'>
+  <h1>{{currentForumName}}</h1>
 </template>
