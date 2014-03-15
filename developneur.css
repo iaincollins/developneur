@@ -10,3 +10,11 @@
 #login-dropdown-list .dropdown-menu .or {
     visibility: hidden;
 }
+
+.margin-none {
+    margin: 0 !important;
+}
+
+.interactive:hover {
+    cursor: pointer;
+}
