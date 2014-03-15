@@ -65,5 +65,21 @@
 </template>
 
 <template name='forum'>
-  <h1>{{currentForumName}}</h1>
+  {{#if loggedIn}}
+  {{> newPost}}
+  {{/if}}
+  <h1>{{currentForum.name}}</h1>
+  <h3>{{currentForum.description}}</h3>
+  {{#each currentPosts}}
+  <h3>{{this.title}}</h1>
+  <h4>{{this.details}}</h4>
+  {{/each}}
+</template>
+
+<template name='newPost'>
+  <form action='#'>
+    <input id='newPostTitle' type='text' placeholder='Title' required/>
+    <input id='newPostDetails' type='text' placeholder='Details' />
+    <input type='submit' value='Create' />
+  </form>
 </template>
