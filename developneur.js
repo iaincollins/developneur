@@ -1,3 +1,7 @@
+Sites = new Meteor.Collection('sites')
+Forums = new Meteor.Collection('forums')
+Posts = new Meteor.Collection('posts')
+
 if (Meteor.isClient) {
   Template.hello.greeting = function () {
     return "Welcome to developneur.";
