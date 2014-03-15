@@ -110,7 +110,6 @@
             {{/if}}
         </div>
     </div>
-</template>
     <div class="row">
         <div class="col-sm-6">
             <hr/>
@@ -120,7 +119,7 @@
                 <img class="pull-left" src='{{currentUserGrav this}}' />
                 <div class="media-body">
                 <h3>{{this.title}}</h1>
-<img />
+                <img src='{{this.imgURL}}'/>
                 <p class="lead">{{this.details}}</p>
                 {{#each currentComments this._id}}
                     <section>
