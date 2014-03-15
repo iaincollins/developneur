@@ -89,6 +89,7 @@
           <hr/>
           <section class='{{this._id}} interactive'>
             <h3>
+                <img height='48' class="pull-right" src='{{this.imageURL}}'/>
                 {{this.name}}
                 <span class="badge badge-lg pull-right">0 complaints</span>
             </h3>
@@ -128,13 +129,19 @@
                 <div class="media-body">
                 <h3 class="margin-top-none">{{this.title}}</h1>
                 <p class="lead">{{this.details}}</p>
+                {{#if isOwnerOfPost this}}
+                <span class='btn btn-danger removePost' data-post-id='{{this._id}}'>Remove Complaint</span>
+                {{/if}}
                 <br/>
                 {{#each currentComments this._id}}
                     <section>
                         <div class="media clearfix margin-bottom">
                             <img class="pull-left" height="32" width="32" src='{{currentUserGrav this}}' />
                             <div class="media-body">
-                                <h5>{{this.comment}}</h5>
+                                <p>{{this.comment}}</p>
+                                {{#if isOwnerOfComment this}}
+                                <span class='btn btn-danger removeComment' data-comment-id='{{this._id}}'>Remove Comment</span>
+                                {{/if}}
                             </div>
                         </div>
                     </section>
