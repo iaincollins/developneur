@@ -1,5 +1,6 @@
 <head>
   <title>developneur</title>
+  <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 </head>
 
 <body>
@@ -64,7 +65,7 @@
 <template name='forums'>
     <div class="row">
         <div class="col-sm-9">
-            <h2 class="margin-none">Forums</h2>
+            <h2 class="margin-top-none">Forums</h2>
         </div>
         <div class="col-sm-3">
             {{#if loggedIn}}
@@ -87,15 +88,44 @@
 
 <template name='forum'>
     <div class="row">
-        <div class="col-sm-12">
-          {{#if loggedIn}}
-          {{> newPost}}
-          {{/if}}
-          <h1>{{currentForum.name}}</h1>
-          <h3>{{currentForum.description}}</h3>
-          {{#each currentPosts}}
-          <h3>{{this.title}}</h1>
-          <h4>{{this.details}}</h4>
+        <div class="col-sm-9">
+            <h2 class="margin-top-none">Forums :: {{currentForum.name}}</h2>
+            <p class="lead">{{currentForum.description}}</p>
+        </div>
+        <div class="col-sm-3">
+            {{#if loggedIn}}
+            {{> newPost}}
+            {{/if}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <hr/>
+            <h2>Posts</h2>
+            {{#each currentPosts}}
+            <div class="media clearfix">
+                <img class="pull-left" src='{{currentUserGrav this}}' />
+                <div class="media-body">
+                <h3>{{this.title}}</h1>
+                <p class="lead">{{this.details}}</p>
+                {{#each currentComments this._id}}
+                    <section>
+                        <div class="media clearfix margin-bottom">
+                            <img class="pull-left" height="32" width="32" src='{{currentUserGrav this}}' />
+                            <div class="media-body">
+                                <h5>{{this.comment}}</h5>
+                            </div>
+                        </div>
+                    </section>
+                  {{/each}}
+                <h5>ADD A COMMENT</h5>
+                  <form action='#'>
+                      <textarea type='text' class="form-control margin-bottom" placeholder='Comment' id='newCommentText' data-post-id='{{this._id}}' required></textarea>
+                      <input type='submit' class="btn btn-primary pull-right" value='Comment' />
+                  </form>
+                 </div>
+            </div>
+            <hr/>
           {{/each}}
         </div>
     </div>
@@ -103,8 +133,8 @@
 
 <template name='newPost'>
   <form action='#'>
-    <input id='newPostTitle' type='text' placeholder='Title' required/>
-    <input id='newPostDetails' type='text' placeholder='Details' />
-    <input type='submit' value='Create post' />
+    <input id='newPostTitle' class="form-control margin-bottom" type='text' placeholder='Title' required/>
+    <input id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details' />
+    <input type='submit' class="btn btn-primary pull-right" value='Create post' />
   </form>
 </template>
