@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-8">
             <h1>{{currentForum.name}} <small>Complaints</small>
-                {{#if loggedIn}}
+                {{#if false}}
                     {{#if isOwnerOfForum}}
                         <span class='btn btn-danger pull-right' id='removeForum'>Remove airline</span>
                     {{/if}}
@@ -24,7 +24,8 @@
             <div class="media clearfix">
                 <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
                 <div class="media-body">
-                <a class="unstyled" href="/forum/post/{{this._id}}"><h3 class="margin-top-none">{{this.title}}</h3></a>
+                <a class="unstyled" href="/forum/post/{{this._id}}"><h3 style="margin-bottom: 5px;" class="margin-top-none">{{this.title}}</h3></a>
+                <span class="text-muted">Made on {{this.created}}</span>
             </div>
           {{/each}}
         </div>
