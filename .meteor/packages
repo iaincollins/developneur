@@ -10,7 +10,6 @@ preserve-inputs
 bootstrap-3
 accounts-ui-bootstrap-3
 accounts-twitter
-accounts-google
 accounts-password
 router
 chatworks
