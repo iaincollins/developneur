@@ -92,6 +92,13 @@ if (Meteor.isClient) {
     });
     
     /* newPost */
+    Template.newPost.templateLoaded = function() {
+      Meteor.defer(function () {
+         $(document).ready(function() { $(".select-autocomplete").select2(); });
+      });
+      return null;
+    };
+    
     Template.newPost.events({
         'submit #newPost':function(){
             Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});

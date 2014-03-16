@@ -5,6 +5,7 @@
             <form id="newPost" action='#'>
                 <h1>Make a complaint</h1>
                 <h2>What is your complaint about?</h2>
+                <p class="lead pull-right">Step 1 of 4</p>
                 <ul id="complaintTypes" class="list-unstyled fa-ul">
                     <li><h3><i class="fa fa-clock-o"></i> Delay or Cancellation</h3></li>
                     <li><h3><i class="fa fa-ticket"></i> Check-in or Boarding</h3></li>
@@ -15,17 +16,30 @@
                     <li><h3><i class="fa fa-question-circle"></i> Something else</h3></li>
                 </ul>
                 <h2>Who did you fly with?</h2>
-                <ul id="complaintAirlines" class="list-unstyled fa-ul">
-                    <li><h3><i class="fa fa-plane"></i> {Airline name}</h3></li>
-                </ul>
-                <h2>Where were you flying from and to?</h2>
-                <div class="form-group">
-                    <label>Flying from</label>
+                <p class="lead pull-right">Step 2 of 4</p>
+                <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Airline</h3></label>
+                <select id="selectAirline" class="select-autocomplete">
+                     <option value="1">Option one</option>
+                     <option value="2">Option two</option>
+                </select>
+                <h2>Where were you going from and to?</h2>
+                <p class="lead pull-right">Step 3 of 4</p>
+                <div class="form-group clearfix">
+                    <label class="col-sm-3 text-right"><h3 style="margin-top: 8px;">Flying from</h3></label>
+                    <select id="selectDepartureAirport" class="select-autocomplete">
+                         <option value="1">Option one</option>
+                         <option value="2">Option two</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label>Flying to</label>
+                <div class="form-group clearfix">
+                    <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Flying to</h3></label>
+                    <select id="selectDestinationAirport" class="select-autocomplete">
+                         <option value="1">Option one</option>
+                         <option value="2">Option two</option>
+                    </select>
                 </div>
                 <h2>Your complaint</h2>
+                <p class="lead pull-right">Step 4 of 4</p>
                 <p class="lead">
                     Please provide as much detail as possible.
                 </p>
@@ -34,7 +48,7 @@
                     <textarea id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details'></textarea>
                 </div>
                 <div class="form-group">
-                    <input type='submit' class="btn btn-primary pull-right" value='Make complaint' />
+                    <input type='submit' class="btn btn-primary pull-right" value='Register complaint' />
                 </div>
             </form>
             <p>
@@ -43,4 +57,5 @@
         </div>
         <div class="col-sm-2">&nbsp;</div>
     </div>
+    {{templateLoaded}}
 </template>
