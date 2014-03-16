@@ -95,7 +95,7 @@ if (Meteor.isClient) {
       Meteor.defer(function () {
          $(document).ready(function() { $(".select-autocomplete").select2(); });
       });
-      return null;
+      return;
     };
     
     Template.newPost.events({
