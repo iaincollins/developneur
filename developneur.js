@@ -64,7 +64,7 @@ if (Meteor.isClient) {
     }
     
     Template.post.currentForum=function(){
-        return Forums.findOne(Session.get('currentForumId'))
+	try{return Forums.findOne(Posts.findOne(Session.get('currentPostId')).forumId)}catch(e){}
     }
     
     Template.forum.currentPosts=function(){
@@ -141,7 +141,6 @@ if (Meteor.isClient) {
         catch(e){return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5((user.author.emails[0].address||'')))}
     }
     Template.post.currentComments=function(currentPostId){
-        console.log(currentPostId)
         return Comments.find({postId:currentPostId});
     }
     Template.post.getPostData=function(){
