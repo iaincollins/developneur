@@ -60,10 +60,27 @@ a.unstyled {
     line-height: 20px;
 }
 
+#complaintTypes {
+    margin-top: 20px;
+}
 #complaintTypes .fa {
     margin-right: 10px;
 }
 
+#complaintTypes li {
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
+#complaintTypes h3 {
+     margin: 0;
+}
+
+#complaintTypes li:hover {
+    cursor: pointer;
+    background: #222;
+    color: #fff;
+}
 
 .select2-container .select2-choice {
     height: auto !important;
@@ -76,7 +93,11 @@ a.unstyled {
 }
 
 .complaint-progress {
-    margin-top: 30px;
+    overflow: auto;
+    background: #eee;
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 5px;
     font-size: 18px;
     line-height: 22px;
 }

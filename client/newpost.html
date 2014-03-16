@@ -3,27 +3,36 @@
     <div class="col-sm-2">&nbsp;</div>
     <div class="col-sm-8">
       <form id="newPost" action='#'>
-	
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-	      </div>
-	      <div class="modal-body">
-		...
-	      </div>
-	      <div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		<button type='submit' class='btn btn-default'>Submit Anyway</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-		
-        <h1>Make a complaint</h1>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Would you like to talk to someone?</h4>
+                </div>
+                  <div class="modal-body">
+                    <p class="lead">Before you submit your complaint</p>
+                    <div class="media">
+                        <i style="font-size: 50px;" class="fa fa-user pull-left"></i>
+                        <div class="media-body">
+                            <div style="border: 2px solid #ccc; padding: 10px; height: 200px; border-radius: 4px">
+                                <p>Hello I'm Lucy from <span id="airlineName"></span> can I help you with your complaint?</p>
+                            </div>
+                            <br/>
+                            <input type="text" class="form-control pull-left" style="width: 300px; margin-right: 10px;"/>
+                            <button class="btn btn-default pull-left">Send</button>
+                        </div>
+                    </div>
+                    
+                  </div>
+                  <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
+                <button type='submit' class='btn btn-lg btn-primary'>Submit complaint</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h1 style="margin-bottom: 20px;">Make a complaint</h1>
         <div id="complaintStage1">
           <div class="row hidden-xs complaint-progress">
             <div class="col-sm-3 text-center">
@@ -41,16 +50,25 @@
           </div>
           <h2>What is your complaint about?</h2>
           <ul id="complaintTypes" class="list-unstyled fa-ul">
-            <li><h3><i class="fa fa-clock-o"></i> Delay or Cancellation</h3></li>
-            <li><h3><i class="fa fa-ticket"></i> Check-in or Boarding</h3></li>
-            <li><h3><i class="fa fa-key"></i> Security</h3></li>
-            <li><h3><i class="fa fa-plane   "></i> In-flight service</h3></li>
-            <li><h3><i class="fa fa-suitcase"></i> Baggage</h3></li>
-            <li><h3><i class="fa fa-cutlery"></i> Food</h3></li>
-            <li><h3><i class="fa fa-question-circle"></i> Something else</h3></li>
+            <li class="complaintType"><h3><i class="fa fa-clock-o"></i> Delay or Cancellation</h3></li>
+            <li class="complaintType"><h3><i class="fa fa-ticket"></i> Check-in or Boarding</h3></li>
+            <li class="complaintType"><h3><i class="fa fa-key"></i> Security</h3></li>
+            <li class="complaintType"><h3><i class="fa fa-plane"></i> In-flight service</h3></li>
+            <li class="complaintType"><h3><i class="fa fa-suitcase"></i> Baggage</h3></li>
+            <li class="complaintType"><h3><i class="fa fa-cutlery"></i> Food</h3></li>
+            <li class="complaintType"><h3><i class="fa fa-question-circle"></i> Something else</h3></li>
           </ul>
+            <select id="complaintType" class="hidden">
+                <option>Delay or Cancellation</option>
+                <option>Check-in or Boarding</option>
+                <option>Security</option>
+                <option>In-flight service</option>
+                <option>Baggage</option>
+                <option>Food</option>
+                <option>Something else</option>
+            </select>
         </div>
-        <div id="complaintStage2">
+        <div id="complaintStage2" style="display: none;">
           <div class="row hidden-xs complaint-progress">
             <div class="col-sm-3 text-center text-muted">
               <p>Step <span>1</span></p>
@@ -70,7 +88,7 @@
           <div class="form-group clearfix">
             <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Airline</h3></label>
             <select id="selectAirline" class="select-autocomplete">
-              <option class="text-muted" disabled="disabled" value="0">Select airline...</option>
+              <option selected="seelcted" class="text-muted" disabled="disabled" value="0">Select airline...</option>
               {{#each allForums}}
               <option value="{{this.id}}">{{this.name}}</option>
               {{/each}}
@@ -78,11 +96,11 @@
           </div>
           <div class="form-group clearfix">
             <p>
-              <a href="#" class="btn btn-lg btn-default btn-continue pull-right">Continue <i class="fa fa-chevron-right"></i></a>
+              <a id="stage2Continue" href="#" class="btn btn-lg btn-default btn-continue pull-right">Continue <i class="fa fa-chevron-right"></i></a>
             </p>
           </div>
         </div>
-        <div id="complaintStage3">
+        <div id="complaintStage3" style="display: none;">
           <div class="row hidden-xs complaint-progress">
             <div class="col-sm-3 text-center text-muted">
               <p>Step <span>1</span></p>
@@ -102,24 +120,26 @@
           <div class="form-group clearfix">
             <label class="col-sm-3 text-right"><h3 style="margin-top: 8px;">Flying from</h3></label>
             <select id="selectDepartureAirport" class="select-autocomplete">
-              <option value="1">Option one</option>
-              <option value="2">Option two</option>
+              <option selected="seelcted" class="text-muted" disabled="disabled" value="0">Select airport...</option>
+              <option value="1">Heathrow (LDN)</option>
+              <option value="2">Charles de Gaulle (CDG)</option>
             </select>
           </div>
           <div class="form-group clearfix">
             <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Flying to</h3></label>
             <select id="selectDestinationAirport" class="select-autocomplete">
-              <option value="1">Option one</option>
-              <option value="2">Option two</option>
+              <option selected="seelcted" class="text-muted" disabled="disabled" value="0">Select airport...</option>
+              <option value="1">Heathrow (LDN)</option>
+              <option value="2">Charles de Gaulle (CDG)</option>
             </select>
           </div>
           <div class="form-group clearfix">
             <p>
-              <a href="#" class="btn btn-lg btn-default btn-continue pull-right">Continue <i class="fa fa-chevron-right"></i></a>
+              <a id="stage3Continue" href="#" class="btn btn-lg btn-default btn-continue pull-right">Continue <i class="fa fa-chevron-right"></i></a>
             </p>
           </div>
         </div>
-        <div id="complaintStage4">
+        <div id="complaintStage4" style="display: none;">
           <div class="row hidden-xs complaint-progress">
             <div class="col-sm-3 text-center text-muted">
               <p>Step <span>1</span></p>
@@ -140,15 +160,15 @@
           </p>
           <div class="form-group">
             <input id='newPostTitle' class="form-control margin-bottom" type='text' placeholder='Title' required/>
-            <textarea id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details'></textarea>
+            <textarea rows="8" id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details'></textarea>
           </div>
           <div class="form-group">
-	    <a href='#' class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Register Complaint</a>
+              <a href='#' class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">Submit complaint</i></a>
           </div>
         </div>
       </form>
-      <p>
-        <br/><br/>
+      <p style="margin-top: 50px;">
+        &nbsp;
       </p>
     </div>
     <div class="col-sm-2">&nbsp;</div>

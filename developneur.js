@@ -100,6 +100,19 @@ if (Meteor.isClient) {
         return Forums.find();
     }
     Template.newPost.events({
+        'click .complaintType':function(e){
+            $('#newPostTitle').val( $(e.toElement).text() );
+            $('#complaintStage1').slideUp();
+            $('#complaintStage2').slideDown();
+        },
+        'click #stage2Continue':function(e){
+            $('#complaintStage2').slideUp();
+            $('#complaintStage3').slideDown();
+        },
+        'click #stage3Continue':function(e){
+            $('#complaintStage3').slideUp();
+            $('#complaintStage4').slideDown();
+        },
         'submit #newPost':function(){
             Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
             Meteor.Router.to('/forum/'+Session.get('currentForumId'));
