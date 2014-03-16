@@ -22,7 +22,7 @@
             {{#each currentPosts}}
             <hr/>
             <div class="media clearfix">
-                <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
+                <img class="pull-left" height="48" width="48" style="border-radius:10px;" src='{{currentUserGrav this}}' />
                 <div class="media-body">
                 <a class="unstyled" href="/forum/post/{{this._id}}"><h3 style="margin-bottom: 5px;" class="margin-top-none">{{this.title}}</h3></a>
                 <span class="text-muted">Made on {{this.created}}</span>
