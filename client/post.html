@@ -1,4 +1,25 @@
 <template name="post">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>{{currentForum.name}} <small>Customer complaint</small>
+                {{#if false}}
+                    {{#if isOwnerOfForum}}
+                        <span class='btn btn-danger pull-right' id='removeForum'>Remove airline</span>
+                    {{/if}}
+                {{/if}}
+            </h1>
+            <p class="lead">{{currentForum.description}}</p>
+        </div>
+        <div class="col-sm-4">
+            <a href="/new/post" class="btn btn-primary pull-right unstyled"><h2 class="margin-none">
+                Make a complaint
+                <span class="fa fa-arrow-circle-right"></span>
+            </h2></a>
+        </div>
+    </div>
+    <p>
+        <a href="/forum/{{currentForum._id}}" class="btn btn-default"><i class="fa fa-chevron-left"></i> View all complaints about {{currentForum.name}}</a>
+    </p>
     {{#each getPostData}}
     <div class="row">
         <div class="col-sm-8">
@@ -19,7 +40,7 @@
                             <div class="media-body">
                                 <p>{{this.comment}}</p>
                                 {{#if isOwnerOfComment this}}
-                                <span class='btn btn-danger removeComment' data-comment-id='{{this._id}}'>Remove Comment</span>
+                                <span class='btn btn-sm btn-danger removeComment pull-right' data-comment-id='{{this._id}}'><i class="fa fa-trash-o"></i> Delete comment</span>
                                 {{/if}}
                             </div>
                         </div>

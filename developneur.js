@@ -18,6 +18,14 @@ if (Meteor.isClient) {
         if (Meteor.user()!=null) { return true } else { return false };
     });
     
+    // Handlebars.registerHelper('userName', function (id) {
+    //     if (Meteor.user()) {
+    //         return Meteor.user().profile.name;
+    //     } else {
+    //         return '';
+    //     }
+    // });
+
     Template.forums.events({
         'click section':function(){
             Meteor.Router.to('/forum/'+$(this)[0]._id);
@@ -52,6 +60,10 @@ if (Meteor.isClient) {
         catch(e){return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5((user.author.emails[0].address||'')))}
     }
     Template.forum.currentForum=function(){
+        return Forums.findOne(Session.get('currentForumId'))
+    }
+    
+    Template.post.currentForum=function(){
         return Forums.findOne(Session.get('currentForumId'))
     }
     
