@@ -93,3 +93,9 @@ a.unstyled {
     background-color: #ffd000;
     color: #000;
 }
+
+.sidebar {
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 20px;
+}
