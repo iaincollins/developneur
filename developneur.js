@@ -45,7 +45,7 @@ if (Meteor.isClient) {
             Meteor.Router.to('/forum/'+$(this)[0]._id);
         }
     });
-
+    
     /* Forum */
     Template.forum.currentUserGrav=function(user){
 	try{return user.author.services.twitter.profile_image_url}
@@ -58,23 +58,23 @@ if (Meteor.isClient) {
     Template.forum.currentPosts=function(){
         return Posts.find({forumId:Session.get('currentForumId')})
     }
-
+    
     Template.forum.isOwnerOfForum=function(){
         return Forums.findOne(Session.get('currentForumId')).author._id==(Meteor.user()||{})._id
     }
-
+    
     Template.post.isOwnerOfPost=function(test){
         return Posts.findOne(test._id).author._id==(Meteor.user()||{})._id
     }
-
+    
     Template.post.isOwnerOfComment=function(test){
         return Comments.findOne(test._id).author._id==(Meteor.user()||{})._id
     }
-
+    
     Template.post.isComment=function(test){
         return test!=undefined
     }
-
+    
     Template.forum.events({
         'click #removeForum':function(){
             Forums.remove(Session.get('currentForumId'));
@@ -92,10 +92,10 @@ if (Meteor.isClient) {
     
     /* newPost */
     Template.newPost.templateLoaded = function() {
-      Meteor.defer(function () {
-         $(document).ready(function() { $(".select-autocomplete").select2(); });
-      });
-      return;
+	Meteor.defer(function () {
+            $(document).ready(function() { $(".select-autocomplete").select2(); });
+	});
+	return;
     };
     Template.newPost.allForums=function(){
         return Forums.find();
@@ -116,13 +116,13 @@ if (Meteor.isClient) {
         },
         'submit #newPost':function(){
             Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Forums.findOne({name:$('#selectAirline').select2('data').text})._id});
-            Meteor.Router.to('/forum/'+Session.get('currentForumId'));
+            Meteor.Router.to('/forum/'+Forums.findOne({name:$('#selectAirline').select2('data').text})._id);
         },
 	'click #registerComplaint':function(){
 	    $('.airlineName').text($('#selectAirline').select2('data').text)
 	}
     });
-
+    
     /* Comments */
     Template.post.currentUserGrav=function(user){
 	try{return user.author.services.twitter.profile_image_url}
