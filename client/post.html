@@ -1,11 +1,12 @@
 <template name="post">
+  {{#each getPostData}}
     <div class="row">
         <div class="col-sm-8">
             <hr/>
             <div class="media clearfix">
                 <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
                 <div class="media-body">
-                <h3 class="margin-top-none">{{this.title}}</h1>
+                <h3 class="margin-top-none">{{this.title}}</h3>
                 <p class="lead">{{this.details}}</p>
                 {{#if isOwnerOfPost this}}
                 <span class='btn btn-danger removePost' data-post-id='{{this._id}}'>Remove Complaint</span>
@@ -25,7 +26,7 @@
                     </section>
                   {{/each}}
                 <h5>ADD A COMMENT</h5>
-                  <form action='#'>
+                  <form action='#' id='addComment'>
                       <textarea type='text' class="form-control margin-bottom" placeholder='Comment' id='newCommentText' data-post-id='{{this._id}}' required></textarea>
                       <input type='submit' class="btn btn-primary pull-right" value='Comment' />
                   </form>
@@ -34,4 +35,5 @@
             <hr/>
         </div>
     </div>
+{{/each}}
 </template>

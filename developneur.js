@@ -13,7 +13,7 @@ if (Meteor.isClient) {
         '/forums':'forums',
         '/forum/:id':{ to:'forum',and:function(id) {Session.set('currentForumId', id) } },
         //@fixme UNFINISHED, DOES NOT WORK.
-        '/forum/post/:id':{ to:'post',and:function(id) {Session.set('currentForumId', id) } }
+        '/forum/post/:id':{ to:'post',and:function(id) {Session.set('currentPostId', id) } }
     });
 
     Handlebars.registerHelper('loggedIn', function (id) {
@@ -29,12 +29,15 @@ if (Meteor.isClient) {
     /* New Forum */
     Template.newForum.events({
         'submit':function(){
-            Forums.insert({imageURL:'http://1.bp.blogspot.com/-XprE-n6XCVo/T9T3uLknxRI/AAAAAAAADls/SK5VyMakTvQ/s1600/airplane+logo.jpeg',author:Meteor.user(),created:new Date(),modified:new Date(),siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
+            Forums.insert({imageURL:$('#iconOfForum').val(),author:Meteor.user(),created:new Date(),modified:new Date(),siteId:1,name:$('#nameOfForum').val(),description:$('#descriptionOfForum').val()});
             Meteor.Router.to('/forums')
         }
     });
 
     /* Forums */
+    Template.forums.numOfComplaints=function(stuff){
+	return(Posts.find({forumId:stuff._id}).count())
+    }
     Template.forums.allForums=function(){
         return Forums.find();
     }
@@ -46,6 +49,9 @@ if (Meteor.isClient) {
     });
 
     /* Forum */
+    Template.forum.currentUserGrav=function(user){
+        return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5(user.author.emails[0].address))
+    }
     Template.forum.currentForum=function(){
         return Forums.findOne(Session.get('currentForumId'))
     }
@@ -58,15 +64,15 @@ if (Meteor.isClient) {
         return Forums.findOne(Session.get('currentForumId')).author._id==(Meteor.user()||{})._id
     }
 
-    Template.forum.isOwnerOfPost=function(test){
+    Template.post.isOwnerOfPost=function(test){
         return Posts.findOne(test._id).author._id==(Meteor.user()||{})._id
     }
 
-    Template.forum.isOwnerOfComment=function(test){
+    Template.post.isOwnerOfComment=function(test){
         return Comments.findOne(test._id).author._id==(Meteor.user()||{})._id
     }
 
-    Template.forum.isComment=function(test){
+    Template.post.isComment=function(test){
         return test!=undefined
     }
 
@@ -74,12 +80,14 @@ if (Meteor.isClient) {
         'click #removeForum':function(){
             Forums.remove(Session.get('currentForumId'));
             Meteor.Router.to('/forums')
-        },
+        }})
+    Template.post.events({
         'click .removePost':function(test){
             Posts.remove($(test.target).attr('data-post-id'));
+	    Meteor.Router.to('/forum/'+Session.get('currentForumId'))
         },
         'click .removeComment':function(test){
-            Comments.remove($(test.target).attr('data-comment-id'))
+            Comments.remove($(test.target).attr('data-comment-id'));
         }
     });
     
@@ -92,14 +100,17 @@ if (Meteor.isClient) {
     });
 
     /* Comments */
-    Template.forum.currentUserGrav=function(user){
+    Template.post.currentUserGrav=function(user){
         return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5(user.author.emails[0].address))
     }
-    Template.forum.currentComments=function(currentPostId){
+    Template.post.currentComments=function(currentPostId){
         console.log(currentPostId)
         return Comments.find({postId:currentPostId});
     }
-    Template.forum.events({
+    Template.post.getPostData=function(){
+	return Posts.find({_id:Session.get('currentPostId')})
+    }
+    Template.post.events({
         'submit #addComment':function(){
             Comments.insert({siteId:1,forumId:Session.get('currentForumId'),author:Meteor.user(),comment:$('#newCommentText').val(),postId:$('#newCommentText').attr('data-post-id'),parentId:0});
         }
