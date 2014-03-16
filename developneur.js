@@ -4,7 +4,6 @@ Posts = new Meteor.Collection('posts')
 Comments = new Meteor.Collection('comments')
 
 if (Meteor.isClient) {
-
     /* Router Stuff */
     Meteor.Router.add({
         '/':'forums',
@@ -94,8 +93,10 @@ if (Meteor.isClient) {
     /* newPost */
     Template.newPost.events({
         'submit #newPost':function(){
+	    if($('#chat').css('display')=='none'){$('#chat').css('display','block')}else{
             Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
             Meteor.Router.to('/forum/'+Session.get('currentForumId'));
+	    }
         }
     });
 
