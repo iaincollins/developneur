@@ -28,20 +28,26 @@
                 <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
                 <div class="media-body">
                 <h3 class="margin-top-none">{{this.title}}</h3>
+                <p>
+                    <span class="text-muted">Made on {{this.created}}</span>
+                </p>
                 <p class="lead">{{this.details}}</p>
                 {{#if isOwnerOfPost this}}
-                <span class='btn btn-danger removePost' data-post-id='{{this._id}}'>Remove Complaint</span>
+                <span class='btn btn-sm  btn-danger removePost pull-right' data-post-id='{{this._id}}'><i class="fa fa-lg fa-trash-o"></i> Delete complaint</span>
                 {{/if}}
-                <br/>
+                <br/><br/>
                 {{#each currentComments this._id}}
                     <section>
                         <div class="media clearfix margin-bottom">
-                            <img class="pull-left" height="32" width="32" src='{{currentUserGrav this}}' />
+                            <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
                             <div class="media-body">
-                                <p>{{this.comment}}</p>
+                                <p class="lead margin-none">{{this.comment}}</p>
                                 {{#if isOwnerOfComment this}}
-                                <span class='btn btn-sm btn-danger removeComment pull-right' data-comment-id='{{this._id}}'><i class="fa fa-trash-o"></i> Delete comment</span>
+                                <span class='btn btn-sm btn-danger removeComment pull-right' data-comment-id='{{this._id}}'><i class="fa fa-lg fa-trash-o"></i> Delete comment</span>
                                 {{/if}}
+                                <p>
+                                    <span class="text-muted">Comment left on {{this.created}}</span>
+                                </p>
                             </div>
                         </div>
                     </section>

@@ -33,14 +33,15 @@
 
 .navbar-brand .fa-stack {
     position: relative;
-    top: -14px;
+    top: -15px;
     background: #ffd000;
     margin-right: 10px;
+    height: 51px;
 }
 
 .navbar-brand .fa-plane {
     position: relative;
-    top: 3px;
+    top: 4px;
     left: -1px;
     color: #222222 !important;
 }
