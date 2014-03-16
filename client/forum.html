@@ -1,0 +1,32 @@
+<template name='forum'>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>{{currentForum.name}} <small>Complaints</small>
+                {{#if loggedIn}}
+                    {{#if isOwnerOfForum}}
+                        <span class='btn btn-danger pull-right' id='removeForum'>Remove airline</span>
+                    {{/if}}
+                {{/if}}
+            </h1>
+            <p class="lead">{{currentForum.description}}</p>
+        </div>
+        <div class="col-sm-4">
+            <a href="/new/post" class="pull-right unstyled"><h2>
+                Make a complaint
+                <span class="fa fa-arrow-circle-right"></span>
+            </h2></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            {{#each currentPosts}}
+            <hr/>
+            <div class="media clearfix">
+                <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
+                <div class="media-body">
+                <a class="unstyled" href="/forum/post/{{this._id}}"><h3 class="margin-top-none">{{this.title}}</h3></a>
+            </div>
+          {{/each}}
+        </div>
+    </div>
+</template>

@@ -29,7 +29,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a id="" href="/forums">Airlines</a></li>
+              <li class="hidden"><a id="" href="/forums">Airlines</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {{ loginButtons }}
@@ -41,119 +41,9 @@
 
 <template name="home">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
+            <h1>Home</h1>
         </div>
-        <div class="col-sm-4">
-          <a class="unstyled"><h2>
-              Make a complaint
-              <span class="fa fa-arrow-circle-right"></span>
-          </h2></a>
       </div>
   </div>
-</template>
-
-<template name='newForum'>
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>New Airline</h1>
-            <form action='#'>
-                <div class="form-group">
-                    <label>Airline name</label>
-                    <input id='nameOfForum' class="form-control" type='text' placeholder='Name of Forum' required />
-                </div>
-                <div class="form-group">
-                    <label>Airline description</label>
-                    <input id='descriptionOfForum' class="form-control" type='text' placeholder='Description of Forum' />
-                </div>
-                <input type='submit' class="btn btn-primary pull-right" value='Create new forum' />
-            </form>
-        </div>
-    </div>
-</template>
-
-<template name='forums'>
-    <div class="row">
-        <div class="col-sm-9">
-            <h2 class="margin-top-none">Airlines</h2>
-        </div>
-        <div class="col-sm-3">
-            {{#if loggedIn}}
-            <a href="/new/forum" class="btn btn-primary pull-right">Add new airline</a>
-            {{/if}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-          {{#each allForums}}
-          <hr/>
-          <section class='{{this._id}} interactive'>
-            <h3>{{this.name}}</h3>
-	    <img height='48' src='{{this.imageURL}}'/>
-            <p class="lead">{{this.description}}</p>
-          </section>
-          {{/each}}
-      </div>
-  </div>
-</template>
-
-<template name='forum'>
-    <div class="row">
-        <div class="col-sm-9">
-            <h2 class="margin-top-none">Airlines :: {{currentForum.name}}</h2>
-            <p class="lead">{{currentForum.description}}</p>
-        </div>
-        <div class="col-sm-3">
-            {{#if loggedIn}}
-	    {{#if isOwnerOfForum}}
-	    <span class='btn btn-danger margin-bottom' id='removeForum'>Remove Forum</span>
-	    {{/if}}
-            {{> newPost}}
-            {{/if}}
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <hr/>
-        <h2>Complaints</h2>
-        {{#each currentPosts}}
-        <div class="media clearfix">
-          <img class="pull-left" src='{{currentUserGrav this}}' />
-          <div class="media-body">
-	    {{#if isOwnerOfPost this}}
-	    <span class='btn btn-danger removePost' data-post-id='{{this._id}}'>Remove Complaint</span>
-	    {{/if}}
-            <h3>{{this.title}}</h3>
-	    <p class="lead">{{this.details}}</p>
-	    {{#each currentComments this._id}}
-	    <section>
-	      <div class="media clearfix margin-bottom">
-		<img class="pull-left" height="32" width="32" src='{{currentUserGrav this}}' />
-		<div class="media-body">
-                  <h5>{{this.comment}}</h5>
-		  {{#if isOwnerOfComment this}}
-		  <span class='btn btn-danger removeComment' data-comment-id='{{this._id}}'>Remove Comment</span>
-		  {{/if}}
-                </div>
-              </div>
-            </section>
-            {{/each}}
-            <h5>ADD A COMMENT</h5>
-            <form action='#' id='addComment'>
-              <textarea type='text' class="form-control margin-bottom" placeholder='Comment' id='newCommentText' data-post-id='{{this._id}}' required></textarea>
-              <input type='submit' class="btn btn-primary pull-right" value='Comment' />
-            </form>
-          </div>
-        </div>
-        <hr/>
-        {{/each}}
-      </div>
-    </div>
-</template>
-
-<template name='newPost'>
-  <form action='#'>
-    <input id='newPostTitle' class="form-control margin-bottom" type='text' placeholder='Title' required/>
-    <input id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details' />
-    <input type='submit' class="btn btn-primary pull-right" value='Create post' />
-  </form>
 </template>

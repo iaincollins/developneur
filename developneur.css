@@ -49,3 +49,13 @@ a.unstyled {
     color: #000 !important;
     text-decoration: none;
 }
+
+.badge {
+    border-radius: 20px;
+}
+
+.badge-lg {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+}

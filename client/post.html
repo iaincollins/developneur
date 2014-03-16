@@ -1,0 +1,37 @@
+<template name="post">
+    <div class="row">
+        <div class="col-sm-8">
+            <hr/>
+            <div class="media clearfix">
+                <img class="pull-left" height="48" width="48" src='{{currentUserGrav this}}' />
+                <div class="media-body">
+                <h3 class="margin-top-none">{{this.title}}</h1>
+                <p class="lead">{{this.details}}</p>
+                {{#if isOwnerOfPost this}}
+                <span class='btn btn-danger removePost' data-post-id='{{this._id}}'>Remove Complaint</span>
+                {{/if}}
+                <br/>
+                {{#each currentComments this._id}}
+                    <section>
+                        <div class="media clearfix margin-bottom">
+                            <img class="pull-left" height="32" width="32" src='{{currentUserGrav this}}' />
+                            <div class="media-body">
+                                <p>{{this.comment}}</p>
+                                {{#if isOwnerOfComment this}}
+                                <span class='btn btn-danger removeComment' data-comment-id='{{this._id}}'>Remove Comment</span>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </section>
+                  {{/each}}
+                <h5>ADD A COMMENT</h5>
+                  <form action='#'>
+                      <textarea type='text' class="form-control margin-bottom" placeholder='Comment' id='newCommentText' data-post-id='{{this._id}}' required></textarea>
+                      <input type='submit' class="btn btn-primary pull-right" value='Comment' />
+                  </form>
+                 </div>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</template>

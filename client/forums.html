@@ -1,0 +1,39 @@
+<template name='forums'>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Airlines
+                {{#if loggedIn}}
+                <a href="/new/forum" class="btn btn-primary pull-right">Add new airline</a>
+                {{/if}}
+            </h1>
+        </div>
+        <div class="col-sm-4">
+            <a href="/new/post" class="pull-right unstyled"><h2>
+                Make a complaint
+                <span class="fa fa-arrow-circle-right"></span>
+            </h2></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+          {{#each allForums}}
+          <hr/>
+          <section class='{{this._id}} interactive'>
+            <div class="media">
+                <!--
+                @fixme Hiding until we have real URLs
+                <img height='48' class="pull-left" src='{{this.imageURL}}'/>
+                -->
+                <div class="media-body">
+                    <h3 class="margin-none">
+                        {{this.name}}
+                        <span class="badge badge-lg pull-right">0 complaints</span>
+                        <p class="lead">{{this.description}}</p>
+                    </h3>
+                </div>
+            </div>
+          </section>
+          {{/each}}
+        </div>
+    </div>
+</template>
