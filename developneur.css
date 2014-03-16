@@ -59,3 +59,18 @@ a.unstyled {
     font-size: 16px;
     line-height: 20px;
 }
+
+#complaintTypes .fa {
+    margin-right: 10px;
+}
+
+
+.select2-container .select2-choice {
+    height: auto !important;
+}
+.select2-container .select2-choice {
+    padding: 10px 20px !important;
+    font-size: 20px;
+    height: 50px;
+    width: 300px;
+}

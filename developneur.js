@@ -91,6 +91,13 @@ if (Meteor.isClient) {
     });
     
     /* newPost */
+    Template.newPost.templateLoaded = function() {
+      Meteor.defer(function () {
+         $(document).ready(function() { $(".select-autocomplete").select2(); });
+      });
+      return null;
+    };
+    
     Template.newPost.events({
         'submit #newPost':function(){
 	    if($('#chat').css('display')=='none'){$('#chat').css('display','block')}else{
