@@ -101,12 +101,8 @@ if (Meteor.isClient) {
     }
     Template.newPost.events({
         'submit #newPost':function(){
-            if ($('#chat').css('display')=='none'){
-                $('#chat').css('display','block')
-            }else{
-                Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
-                Meteor.Router.to('/forum/'+Session.get('currentForumId'));
-            }
+            Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
+            Meteor.Router.to('/forum/'+Session.get('currentForumId'));
         }
     });
 
