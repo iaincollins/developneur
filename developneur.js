@@ -98,12 +98,15 @@ if (Meteor.isClient) {
     };
     Template.newPost.allForums=function(){
         return Forums.find();
-    }
+    };
     Template.newPost.events({
         'submit #newPost':function(){
             Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Forums.findOne({name:$('#selectAirline').select2('data').text})._id});
             Meteor.Router.to('/forum/'+Session.get('currentForumId'));
-        }
+        },
+	'click #registerComplaint':function(){
+	    $('#airlineName').text($('#selectAirline').select2('data').text)
+	}
     });
 
     /* Comments */
