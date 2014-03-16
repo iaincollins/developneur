@@ -48,7 +48,8 @@ if (Meteor.isClient) {
 
     /* Forum */
     Template.forum.currentUserGrav=function(user){
-        return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5(user.author.emails[0].address))
+	try{return user.author.services.twitter.profile_image_url}
+        catch(e){return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5((user.author.emails[0].address||'')))}
     }
     Template.forum.currentForum=function(){
         return Forums.findOne(Session.get('currentForumId'))
@@ -124,7 +125,8 @@ if (Meteor.isClient) {
 
     /* Comments */
     Template.post.currentUserGrav=function(user){
-        return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5(user.author.emails[0].address))
+	try{return user.author.services.twitter.profile_image_url}
+        catch(e){return encodeURI('http://www.gravatar.com/avatar/'+CryptoJS.MD5((user.author.emails[0].address||'')))}
     }
     Template.post.currentComments=function(currentPostId){
         console.log(currentPostId)
