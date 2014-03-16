@@ -8,51 +8,127 @@
             </div>
             <form id="newPost" action='#'>
                 <h1>Make a complaint</h1>
-                <h2>What is your complaint about?</h2>
-                <p class="lead pull-right">Step 1 of 4</p>
-                <ul id="complaintTypes" class="list-unstyled fa-ul">
-                    <li><h3><i class="fa fa-clock-o"></i> Delay or Cancellation</h3></li>
-                    <li><h3><i class="fa fa-ticket"></i> Check-in or Boarding</h3></li>
-                    <li><h3><i class="fa fa-key"></i> Security</h3></li>
-                    <li><h3><i class="fa fa-globe"></i> In-flight service</h3></li>
-                    <li><h3><i class="fa fa-suitcase"></i> Baggage</h3></li>
-                    <li><h3><i class="fa fa-cutlery"></i> Food</h3></li>
-                    <li><h3><i class="fa fa-question-circle"></i> Something else</h3></li>
-                </ul>
-                <h2>Who did you fly with?</h2>
-                <p class="lead pull-right">Step 2 of 4</p>
-                <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Airline</h3></label>
-                <select id="selectAirline" class="select-autocomplete">
-                     <option value="1">Option one</option>
-                     <option value="2">Option two</option>
-                </select>
-                <h2>Where were you going from and to?</h2>
-                <p class="lead pull-right">Step 3 of 4</p>
-                <div class="form-group clearfix">
-                    <label class="col-sm-3 text-right"><h3 style="margin-top: 8px;">Flying from</h3></label>
-                    <select id="selectDepartureAirport" class="select-autocomplete">
-                         <option value="1">Option one</option>
-                         <option value="2">Option two</option>
-                    </select>
+                <div id="complaintStage1">
+                    <div class="row hidden-xs complaint-progress">
+                        <div class="col-sm-3 text-center">
+                            <p class="active">Step <span>1</span> <i class="fa fa-arrow-right"></i></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>2</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>3</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>4</span></p>
+                        </div>
+                    </div>
+                    <h2>What is your complaint about?</h2>
+                    <ul id="complaintTypes" class="list-unstyled fa-ul">
+                        <li><h3><i class="fa fa-clock-o"></i> Delay or Cancellation</h3></li>
+                        <li><h3><i class="fa fa-ticket"></i> Check-in or Boarding</h3></li>
+                        <li><h3><i class="fa fa-key"></i> Security</h3></li>
+                        <li><h3><i class="fa fa-plane   "></i> In-flight service</h3></li>
+                        <li><h3><i class="fa fa-suitcase"></i> Baggage</h3></li>
+                        <li><h3><i class="fa fa-cutlery"></i> Food</h3></li>
+                        <li><h3><i class="fa fa-question-circle"></i> Something else</h3></li>
+                    </ul>
                 </div>
-                <div class="form-group clearfix">
-                    <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Flying to</h3></label>
-                    <select id="selectDestinationAirport" class="select-autocomplete">
-                         <option value="1">Option one</option>
-                         <option value="2">Option two</option>
-                    </select>
+                <div id="complaintStage2">
+                    <div class="row hidden-xs complaint-progress">
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>1</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="active">Step <span>2</span> <i class="fa fa-arrow-right"></i></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>3</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>4</span></p>
+                        </div>
+                    </div>
+                    <h2>Who did you fly with?</h2>
+                    <br/>
+                    <div class="form-group clearfix">
+                        <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Airline</h3></label>
+                        <select id="selectAirline" class="select-autocomplete">
+                            <option class="text-muted" disabled="disabled" value="0">Select airline...</option>
+                             {{#each allForums}}
+                             <option value="{{this.id}}">{{this.name}}</option>
+                             {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group clearfix">
+                        <p>
+                            <a href="#" class="btn btn-lg btn-default btn-continue pull-right">Continue <i class="fa fa-chevron-right"></i></a>
+                        </p>
+                    </div>
                 </div>
-                <h2>Your complaint</h2>
-                <p class="lead pull-right">Step 4 of 4</p>
-                <p class="lead">
-                    Please provide as much detail as possible.
-                </p>
-                <div class="form-group">
-                    <input id='newPostTitle' class="form-control margin-bottom" type='text' placeholder='Title' required/>
-                    <textarea id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details'></textarea>
+                <div id="complaintStage3">
+                    <div class="row hidden-xs complaint-progress">
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>1</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>2</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="active">Step <span>3</span> <i class="fa fa-arrow-right"></i></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>4</span></p>
+                        </div>
+                    </div>
+                    <h2>Where were you going from and to?</h2>
+                    <br/>
+                    <div class="form-group clearfix">
+                        <label class="col-sm-3 text-right"><h3 style="margin-top: 8px;">Flying from</h3></label>
+                        <select id="selectDepartureAirport" class="select-autocomplete">
+                             <option value="1">Option one</option>
+                             <option value="2">Option two</option>
+                        </select>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Flying to</h3></label>
+                        <select id="selectDestinationAirport" class="select-autocomplete">
+                             <option value="1">Option one</option>
+                             <option value="2">Option two</option>
+                        </select>
+                    </div>
+                    <div class="form-group clearfix">
+                        <p>
+                            <a href="#" class="btn btn-lg btn-default btn-continue pull-right">Continue <i class="fa fa-chevron-right"></i></a>
+                        </p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type='submit' class="btn btn-primary pull-right" value='Register complaint' />
+                <div id="complaintStage4">
+                    <div class="row hidden-xs complaint-progress">
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>1</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>2</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center text-muted">
+                            <p>Step <span>3</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="active">Step <span>4</span></p>
+                        </div>
+                    </div>
+                    <h2>Your complaint</h2>
+                    <p class="lead">
+                        Please provide as much detail as possible.
+                    </p>
+                    <div class="form-group">
+                        <input id='newPostTitle' class="form-control margin-bottom" type='text' placeholder='Title' required/>
+                        <textarea id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details'></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type='submit' class="btn btn-lg btn-primary pull-right" value='Register complaint' />
+                    </div>
                 </div>
             </form>
             <p>

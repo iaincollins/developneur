@@ -21,11 +21,11 @@
           <hr/>
           <section class='{{this._id}} interactive'>
             <div class="media">
-                <img height='48' class="pull-left" src='{{this.imageURL}}'/>
+                <img class="pull-right" src='{{this.imageURL}}'/>
                 <div class="media-body">
                     <h3 class="margin-none">
-                        {{this.name}}
-                        <span class="badge badge-lg pull-right">{{numOfComplaints this}} complaints</span>
+                        <span class="pull-left">{{this.name}}</span>
+                        <span style="margin-left: 10px;" class="badge badge-lg pull-left">{{numOfComplaints this}} complaints</span><br/>
                         <p class="lead">{{this.description}}</p>
                     </h3>
                 </div>

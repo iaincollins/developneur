@@ -11,7 +11,6 @@ if (Meteor.isClient) {
         '/new/post':'newPost',
         '/forums':'forums',
         '/forum/:id':{ to:'forum',and:function(id) {Session.set('currentForumId', id) } },
-        //@fixme UNFINISHED, DOES NOT WORK.
         '/forum/post/:id':{ to:'post',and:function(id) {Session.set('currentPostId', id) } }
     });
 
@@ -97,13 +96,17 @@ if (Meteor.isClient) {
       });
       return;
     };
-    
+    Template.newPost.allForums=function(){
+        return Forums.find();
+    }
     Template.newPost.events({
         'submit #newPost':function(){
-	    if($('#chat').css('display')=='none'){$('#chat').css('display','block')}else{
-            Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
-            Meteor.Router.to('/forum/'+Session.get('currentForumId'));
-	    }
+            if ($('#chat').css('display')=='none'){
+                $('#chat').css('display','block')
+            }else{
+                Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
+                Meteor.Router.to('/forum/'+Session.get('currentForumId'));
+            }
         }
     });
 
