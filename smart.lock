@@ -4,7 +4,8 @@
     "basePackages": {
       "bootstrap-3": {},
       "accounts-ui-bootstrap-3": {},
-      "router": {}
+      "router": {},
+      "chatworks": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -22,6 +23,11 @@
         "tag": "v0.5.4.1",
         "commit": "d00e380dda2184b70e909fc4a0fb5358d602c586"
       },
+      "chatworks": {
+        "git": "https://github.com/Pent/chatworks.git",
+        "tag": "v1.5.0",
+        "commit": "d5d4ad939244c108cabd57ac22521af8f9d5cc94"
+      },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
         "tag": "v1.3.5",
@@ -31,6 +37,11 @@
         "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",
         "tag": "v4.0.0",
         "commit": "dc4965f1424cfca625ec3fbea17eace03f8e32c5"
+      },
+      "headers": {
+        "git": "https://github.com/gadicohen/meteor-headers",
+        "branch": "master",
+        "commit": "5f8f187bbc5ada95c7eab1197dddbdbad1de0341"
       }
     }
   }
