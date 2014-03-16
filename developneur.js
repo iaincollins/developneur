@@ -149,7 +149,7 @@ if (Meteor.isClient) {
     }
     Template.post.events({
         'submit #addComment':function(){
-            Comments.insert({siteId:1,forumId:Session.get('currentForumId'),author:Meteor.user(),comment:$('#newCommentText').val(),postId:$('#newCommentText').attr('data-post-id'),parentId:0});
+            Comments.insert({siteId:1,forumId:Session.get('currentForumId'),author:Meteor.user(),comment:$('#newCommentText').val(),postId:$('#newCommentText').attr('data-post-id'),parentId:0,created:new Date()});
         }
     })
 }
