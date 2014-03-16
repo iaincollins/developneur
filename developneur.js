@@ -98,10 +98,10 @@ if (Meteor.isClient) {
     };
     Template.newPost.allForums=function(){
         return Forums.find();
-    }
+    };
     Template.newPost.events({
         'click .complaintType':function(e){
-            $('#newPostTitle').val( $(e.toElement).text() );
+            $('#newPostTitle').val( "Complaint about "+$(e.toElement).text().trim() );
             $('#complaintStage1').slideUp();
             $('#complaintStage2').slideDown();
         },
@@ -114,9 +114,12 @@ if (Meteor.isClient) {
             $('#complaintStage4').slideDown();
         },
         'submit #newPost':function(){
-            Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Session.get('currentForumId')});
+            Posts.insert({created:new Date(),modified:new Date(),title:$('#newPostTitle').val(),details:$('#newPostDetails').val(),author:Meteor.user(),siteId:1,forumId:Forums.findOne({name:$('#selectAirline').select2('data').text})._id});
             Meteor.Router.to('/forum/'+Session.get('currentForumId'));
-        }
+        },
+	'click #registerComplaint':function(){
+	    $('.airlineName').text($('#selectAirline').select2('data').text)
+	}
     });
 
     /* Comments */

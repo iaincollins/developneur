@@ -8,15 +8,15 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Would you like to talk to someone?</h4>
+                    <h4 class="modal-title" id="myModalLabel">A customer service agent is available!</h4>
                 </div>
                   <div class="modal-body">
-                    <p class="lead">Before you submit your complaint</p>
+                    <p class="lead">Would you like to talk to someone from <strong><span class="airlineName"></span></strong>?</p>
                     <div class="media">
                         <i style="font-size: 50px;" class="fa fa-user pull-left"></i>
                         <div class="media-body">
                             <div style="border: 2px solid #ccc; padding: 10px; height: 200px; border-radius: 4px">
-                                <p>Hello I'm Lucy from <span id="airlineName"></span> can I help you with your complaint?</p>
+                                <p>Hello I'm Lucy from <span class="airlineName"></span> can I help you with your complaint?</p>
                             </div>
                             <br/>
                             <input type="text" class="form-control pull-left" style="width: 300px; margin-right: 10px;"/>
@@ -121,16 +121,96 @@
             <label class="col-sm-3 text-right"><h3 style="margin-top: 8px;">Flying from</h3></label>
             <select id="selectDepartureAirport" class="select-autocomplete">
               <option selected="seelcted" class="text-muted" disabled="disabled" value="0">Select airport...</option>
-              <option value="1">Heathrow (LDN)</option>
-              <option value="2">Charles de Gaulle (CDG)</option>
+              <option value="1">Heathrow - LDN</option>
+              <option value="2">Charles de Gaulle - CDG</option>
+                <OPTION VALUE="ATL">Atlanta Hartsfield International - ATL</OPTION>
+                <OPTION VALUE="BWI">Baltimore/Washington International - BWI</OPTION>
+                <OPTION VALUE="BOS">Boston Logan International - BOS</OPTION>
+                <OPTION VALUE="CLT">Charlotte/Douglas International - CLT</OPTION>
+                <OPTION VALUE="MDW">Chicago Midway - MDW</OPTION>
+                <OPTION VALUE="ORD">Chicago O'Hare International - ORD</OPTION>
+                <OPTION VALUE="CVG">Cincinnati/Northern Kentucky Intl - CVG</OPTION>
+                <OPTION VALUE="CLE">Cleveland-Hopkins International - CLE</OPTION>
+                <OPTION VALUE="DFW">Dallas/Fort Worth International - DFW</OPTION>
+                <OPTION VALUE="DEN">Denver International - DEN</OPTION>
+                <OPTION VALUE="DTW">Detroit Metropolitan Wayne County - DTW</OPTION>
+                <OPTION VALUE="FLL">Fort Lauderdale/Hollywood Intl - FLL</OPTION>
+                <OPTION VALUE="IAH">Houston's George Bush Intercontinental - IAH</OPTION>
+                <OPTION VALUE="IND">Indianapolis International - IND</OPTION>
+                <OPTION VALUE="MCI">Kansas City International - MCI</OPTION>
+                <OPTION VALUE="LAS">Las Vegas' McCarran International - LAS</OPTION>
+                <OPTION VALUE="LAX">Los Angeles International - LAX</OPTION>
+                <OPTION VALUE="MEM">Memphis International - MEM</OPTION>
+                <OPTION VALUE="MIA">Miami International - MIA</OPTION>
+                <OPTION VALUE="MSP">Minneapolis-St. Paul International - MSP</OPTION>
+                <OPTION VALUE="BNA">Nashville International -  BNA</OPTION>
+                <OPTION VALUE="EWR">Newark International - EWR</OPTION>
+                <OPTION VALUE="JFK">New York City's John F Kennedy Intl - JFK</OPTION>
+                <OPTION VALUE="LGA">New York City's Laguardia - LGA</OPTION>
+                <OPTION VALUE="MCO">Orlando International - MCO</OPTION>
+                <OPTION VALUE="PHL">Philadelphia International - PHL</OPTION>
+                <OPTION VALUE="PHX">Phoenix Sky Harbor International - PHX</OPTION>
+                <OPTION VALUE="PIT">Pittsburgh International - PIT</OPTION>
+                <OPTION VALUE="PDX">Portland International - PDX</OPTION>
+                <OPTION VALUE="RDU">Raleigh-Durham International - RDU</OPTION>
+                <OPTION VALUE="SLC">Salt Lake City International - SLC</OPTION>
+                <OPTION VALUE="SAN">San Diego Intl-Lindbergh Field - SAN</OPTION>
+                <OPTION VALUE="SFO">San Francisco International - SFO</OPTION>
+                <OPTION VALUE="SJC">San Jose International - SJC</OPTION>
+                <OPTION VALUE="SEA">Seattle-Tacoma International - SEA</OPTION>
+                <OPTION VALUE="STL">St. Louis Lambert-International - STL</OPTION>
+                <OPTION VALUE="TPA">Tampa International - TPA</OPTION>
+                <OPTION VALUE="TEB">Teterboro - TEB</OPTION>
+                <OPTION VALUE="IAD">Washington Dulles International - IAD</OPTION>
+                <OPTION VALUE="DCA">Washington National - DCA</OPTION>
             </select>
           </div>
           <div class="form-group clearfix">
             <label class="col-sm-3 text-right"><h3 style="margin-top: 5px;">Flying to</h3></label>
             <select id="selectDestinationAirport" class="select-autocomplete">
               <option selected="seelcted" class="text-muted" disabled="disabled" value="0">Select airport...</option>
-              <option value="1">Heathrow (LDN)</option>
-              <option value="2">Charles de Gaulle (CDG)</option>
+              <option value="1">Heathrow - LDN</option>
+              <option value="2">Charles de Gaulle - CDG</option>
+                <OPTION VALUE="ATL">Atlanta Hartsfield International - ATL</OPTION>
+                <OPTION VALUE="BWI">Baltimore/Washington International - BWI</OPTION>
+                <OPTION VALUE="BOS">Boston Logan International - BOS</OPTION>
+                <OPTION VALUE="CLT">Charlotte/Douglas International - CLT</OPTION>
+                <OPTION VALUE="MDW">Chicago Midway - MDW</OPTION>
+                <OPTION VALUE="ORD">Chicago O'Hare International - ORD</OPTION>
+                <OPTION VALUE="CVG">Cincinnati/Northern Kentucky Intl - CVG</OPTION>
+                <OPTION VALUE="CLE">Cleveland-Hopkins International - CLE</OPTION>
+                <OPTION VALUE="DFW">Dallas/Fort Worth International - DFW</OPTION>
+                <OPTION VALUE="DEN">Denver International - DEN</OPTION>
+                <OPTION VALUE="DTW">Detroit Metropolitan Wayne County - DTW</OPTION>
+                <OPTION VALUE="FLL">Fort Lauderdale/Hollywood Intl - FLL</OPTION>
+                <OPTION VALUE="IAH">Houston's George Bush Intercontinental - IAH</OPTION>
+                <OPTION VALUE="IND">Indianapolis International - IND</OPTION>
+                <OPTION VALUE="MCI">Kansas City International - MCI</OPTION>
+                <OPTION VALUE="LAS">Las Vegas' McCarran International - LAS</OPTION>
+                <OPTION VALUE="LAX">Los Angeles International - LAX</OPTION>
+                <OPTION VALUE="MEM">Memphis International - MEM</OPTION>
+                <OPTION VALUE="MIA">Miami International - MIA</OPTION>
+                <OPTION VALUE="MSP">Minneapolis-St. Paul International - MSP</OPTION>
+                <OPTION VALUE="BNA">Nashville International -  BNA</OPTION>
+                <OPTION VALUE="EWR">Newark International - EWR</OPTION>
+                <OPTION VALUE="JFK">New York City's John F Kennedy Intl - JFK</OPTION>
+                <OPTION VALUE="LGA">New York City's Laguardia - LGA</OPTION>
+                <OPTION VALUE="MCO">Orlando International - MCO</OPTION>
+                <OPTION VALUE="PHL">Philadelphia International - PHL</OPTION>
+                <OPTION VALUE="PHX">Phoenix Sky Harbor International - PHX</OPTION>
+                <OPTION VALUE="PIT">Pittsburgh International - PIT</OPTION>
+                <OPTION VALUE="PDX">Portland International - PDX</OPTION>
+                <OPTION VALUE="RDU">Raleigh-Durham International - RDU</OPTION>
+                <OPTION VALUE="SLC">Salt Lake City International - SLC</OPTION>
+                <OPTION VALUE="SAN">San Diego Intl-Lindbergh Field - SAN</OPTION>
+                <OPTION VALUE="SFO">San Francisco International - SFO</OPTION>
+                <OPTION VALUE="SJC">San Jose International - SJC</OPTION>
+                <OPTION VALUE="SEA">Seattle-Tacoma International - SEA</OPTION>
+                <OPTION VALUE="STL">St. Louis Lambert-International - STL</OPTION>
+                <OPTION VALUE="TPA">Tampa International - TPA</OPTION>
+                <OPTION VALUE="TEB">Teterboro - TEB</OPTION>
+                <OPTION VALUE="IAD">Washington Dulles International - IAD</OPTION>
+                <OPTION VALUE="DCA">Washington National - DCA</OPTION>
             </select>
           </div>
           <div class="form-group clearfix">
@@ -163,7 +243,7 @@
             <textarea rows="8" id='newPostDetails'class="form-control margin-bottom" type='text' placeholder='Details'></textarea>
           </div>
           <div class="form-group">
-              <a href='#' class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">Submit complaint</i></a>
+              <a href='#' id='registerComplaint' class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">Submit complaint</i></a>
           </div>
         </div>
       </form>
